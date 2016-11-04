@@ -1,3 +1,6 @@
+/**
+ * Created by bestxie on 2016/10/29 14:50.
+ */
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/socket');
 
