@@ -1,0 +1,142 @@
+section{
+	background: #fff;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	margin-bottom:0.2rem;
+	padding:0.25rem 0.2rem;
+	line-height:0.35rem;
+}
+section span{
+	color: #333;
+}
+section img{
+	width:0.36rem;
+	height:0.36rem;
+	margin-right:0.2rem;
+	display: inline-block;
+}
+section .jifen{
+	color: #ff6600;
+	margin-right: .1rem;
+}
+
+.clr_tips{
+margin-left: 5px;
+}
+
+.user_relative .mui-icon{
+	margin-top:0.35rem;
+}
+.mui-table-view .mui-media-object {
+	line-height: .96rem;
+	max-width: .96rem;
+	height: .96rem;
+	border-radius: 50%;
+}
+.mui-ellipsis {
+	margin: .04rem 0 .1rem;
+}
+.mui-ellipsis span {
+	margin-left: 0.2rem;
+}
+.user_relatives{
+	position: relative;
+}
+.mui-icons{
+	position: absolute;
+	top: 50%;
+	right: .25rem;
+	margin-top: -12px;
+}
+.mui-table-view .mui-media{
+	margin-bottom: .2rem;
+}
+.mui-btn2{
+	margin-top: .15rem;
+}
+
+/*¡Ù—‘¡–±Ì*/
+.contact_item {
+	border-top: none;
+	padding: 0 .2rem 0 0.2rem;
+	margin: .2rem 0;
+}
+
+.contact_item li:last-child {
+	border-bottom: none;
+}
+.contact_item li {
+	position: relative;
+	padding: 0.2rem 0;
+	height: auto;
+	box-sizing: border-box;
+	border-bottom: 1px solid #ddd;
+}
+.contact_item li .minus_box {
+	position: relative;
+	height: 48px;
+	width: 10%;
+	vertical-align: middle;
+}
+.minus {
+	position: absolute;
+	top: 50%;
+	margin-top: -0.21rem;
+	width: 0.43rem;
+	height: 0.43rem;
+	display: inline-block;
+	background: url(../img/minus.png) 0 0 no-repeat;
+	background-size: 0.4rem auto;
+	vertical-align: middle;
+}
+.contact_item li dl {
+	width: 90%;
+}
+.contact_item li dt {
+	font-size: 0.28rem;
+	color: #000;
+	margin-bottom: 0.1rem;
+}
+.contact_item li dd {
+	font-size: 0.24rem;
+	color: #666;
+}
+
+/*¡Ù—‘*/
+.evaluation {
+	margin-top: 0.1rem;
+	background: #fff;
+	padding: 0.2rem;
+}
+.evaluation ul li {
+	height: 0.9rem;
+	line-height: 0.9rem;
+	text-align: left;
+}
+.evaluation ul li span {
+	display: inline-block;
+	color: #333;
+	font-size: 0.28rem;
+}
+.evaluation ul li em.star {
+	background: url(../img/star.png) no-repeat;
+	background-size: 100%;
+	width: 0.4rem;
+	height: 0.4rem;
+}
+.evaluation ul li em {
+	background: url(../img/star-grey.png) no-repeat;
+	background-size: 100%;
+	width: 0.4rem;
+	height: 0.4rem;
+	display: inline-block;
+	margin-left: 0.26rem;
+	vertical-align: -0.1rem;
+}
+.evaluation textarea {
+	width: 7.1rem;
+	height: 2.85rem;
+	font-size: 0.24rem;
+	color: #333;
+}
+.evaluation footer{text-align: center;}

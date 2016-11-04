@@ -1,0 +1,61 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no')
+        meta(name='apple-mobile-web-app-capable', content='yes')
+        meta(name='apple-mobile-web-app-status-bar-style', content='black')
+        title= title
+        link(href='/css/mui.min.css', rel='stylesheet')
+        link(href='/css/public.css', rel='stylesheet')
+        link(href='/css/login.css', rel='stylesheet')
+        script(src='/js/flexible.js')
+    body
+        header.mui-bar.mui-bar-nav
+            if username != ''
+                a.mui-icon.mui-icon-arrowleft.index-icon-arrowleft 菜单
+                h1#title.mui-title 欢迎 #{name}
+            else
+                h1#title.mui-title webSocket
+        .mui-content
+            if username == ''
+                form#myform.page(style='display: block')
+                    .inte-banner
+                        p
+                            | 紧作用于个人学习研究
+                            br
+                            // 前端页面由前端大神曹进国提供<br/>
+                            | 基于mui,node,mongodb,websoket开发
+                    .mui-card.validate_box
+                        .mui-card-header 欢迎，请注册/登录后再操作
+                        .mui-input-group
+                            .mui-input-row
+                                label(for='username') 用户名：
+                                input#username.mui-input-clear(type='text', name='username', placeholder='请输入用户名')
+                            .mui-input-row
+                                label(for='password') 密码：
+                                input#password.mui-input-password(type='password', name='password', placeholder='请输入密码')
+                        .mui-card-footer
+                            a.mui-card-link
+                            a.mui-card-link
+                                button.submit.mui-btn.mui-btn-primary 登陆
+                            a.mui-card-link(href='/register') 注册
+        nav.mui-bar.mui-bar-tab
+            .mui-bar-box
+                a.mui-tab-item.mui-active2
+                    span.mui-icon.icon.message_list_icon
+                    span.mui-tab-label 消息
+                a.mui-tab-item
+                    span.mui-icon.icon.yonghu_list_icon
+                    span.mui-tab-label 用户列表
+                a#href-user.mui-tab-item
+                    span.mui-icon.icon.my_wanjia_icon
+                        span.mui-badge.mui-badge-primary 1
+                    span.mui-tab-label 我
+            .msg-box
+        script(src='/js/jquery-1.8.3.min.js')
+        script(src='/js/jquery.validate.min.js')
+        script(src='/js/mui.min.js')
+        script(src='/js/form-validate.js')
+        script(src='/js/my-form.js')
+        script(src='/js/login.js',type='text/javascript', charset='utf-8')

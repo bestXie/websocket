@@ -1,0 +1,228 @@
+.inte-banner {
+  position: relative;
+  background: url(../img/index-bg.jpg);
+  background-size: 100% auto;
+  height:  2.34rem;
+}
+.inte-banner p {
+  text-align: center;
+  font-size: 0.24rem;
+  color: #fff;
+  padding-top: 0.7rem;
+}
+.mui-content ,body{
+  background: #eee;
+}
+.index-icon-arrowleft:before{
+  content: '\e563';
+  color: #888;
+}
+.message_system {
+  text-align: center;
+  margin: 10px auto;
+  max-width: 50%;
+}
+.message-box{
+  padding-bottom: 1rem;
+ overflow: hidden;padding-top: 24px;
+
+}
+label.error{
+  text-align: center;
+  color: #ff0000;
+  font-size: 0.2rem;
+  display: block;
+}
+
+.message {
+  margin-bottom: 16px;
+  float: left;
+  width: 100%;
+}
+.message.you{
+  padding-left: .1rem;
+}
+.message.me{
+  padding-right: .1rem;
+}
+.message .avatar {
+  width: .8rem;
+  height: .8rem;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  float: left;
+  cursor: pointer;
+  margin-top: .02rem;
+}
+.message .content {
+  overflow: hidden;
+}
+.message .content .name{
+  margin: 0 .2rem .1rem;
+  text-shadow: 1px 1px 1px #ccc;
+}
+.bubble.bubble_default {
+  background-color: #fff;
+}
+.bubble {
+  max-width: 85%;
+  min-height: 1em;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  text-align: left;
+  font-size: 14px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  margin: 0 10px;
+}
+.bubble_cont {
+  word-wrap: break-word;
+  word-break: break-all;
+  min-height: 25px;
+}
+
+.bubble.left:after {
+  border-right-color: #FFF;
+  border-right-width: 4px;
+}
+.bubble.left:before, .bubble.left:after {
+  right: 100%;
+
+}
+.bubble:before, .bubble:after {
+  position: absolute;
+  top: .16rem;
+  border: .12rem solid transparent;
+  content: " ";
+}
+.bubble_cont .plain .ico_loading {
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  margin-top:-.14rem;
+  margin-right: .13rem;
+}
+.bubble_cont img {
+  vertical-align: middle;
+}
+.bubble_cont .plain {
+  padding: .18rem .26rem;
+}
+pre {
+   margin: 0;
+   font-family: inherit;
+   font-size: inherit;
+   white-space: pre-wrap;
+   word-break: initial;
+ }
+
+.bubble_cont .plain .ico_fail {
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  margin-top: -11px;
+  margin-right: 9px;
+  cursor: pointer;
+}
+.message.me {
+  float: right;
+  text-align: right;
+  clear: right;
+}
+.message.me .avatar {
+  float: right;
+}
+.bubble.right {
+  background-color: #b2e281;
+}
+.bubble.right:after {
+  border-left-color: #b2e281;
+  border-left-width: 4px;
+}
+
+.bubble.right:before, .bubble.right:after {
+  left: 100%;
+}
+
+.ico_loading{
+  display: none;
+}
+
+.mui-card-footer .mui-card-link {
+  margin-top: 0;
+}
+.mui-bar {
+  position: absolute;
+}
+
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 54px;
+  overflow: hidden;
+  background: #fafafa;
+  border-top: 1px solid #ddd;
+  z-index: 50;
+}
+footer .bar{
+  height:54px;
+  padding: 9px 5px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+.text {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: block;
+  font-size: 16px;
+  resize: none;
+  overflow: hidden;
+  border-radius: 9px;
+  padding: 8px 6px;
+  border: 1px solid #c8c8c8;
+  background: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  outline: none;
+  -webkit-appearance: none;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 1;
+  height: 34px;
+}
+.btn-send {
+  height: 34px;
+  line-height: 34px;
+  font-size: 15px;
+  text-align: center;
+  color: #fff;
+  background: #31a0ff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border-radius: 9px;
+  border: 1px solid #31a0ff;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none;
+  -webkit-appearance: none;
+  width: 60px;
+  margin-left: 10px;
+}

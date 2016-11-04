@@ -1,0 +1,86 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no')
+        title &#x7528;&#x6237;&#x5217;&#x8868;-webSocket
+        link(rel='stylesheet', href='./css/mui.min.css')
+        link(rel='stylesheet', href='./css/public.css')
+        link(rel='stylesheet', href='./css/userlist.css')
+        script(src='./js/flexible.js')
+    body
+        header.mui-bar.mui-bar-nav
+            a.mui-icon.mui-icon-arrowleft(href='/index') 返回
+            h1.mui-title 用户列表
+        .mui-content
+            .mui-content-padded(style='margin: 5px;')
+                .mui-input-row.mui-search
+                    input#input.mui-input-clear(type='search', placeholder='输入用户名查询')
+                button#input_check.mui-btn.mui-btn-warning(type='button') &#x641C;&#x7D22;
+            section.contact_item
+                ul#userlistbox
+                    for item in list
+                            //if item.username != username
+                            li.clr
+                                .choose_box.fl
+                                    span.choose.clr
+                                        img.fl(src='#{item.head}')
+                                dl.fl
+                                    dd
+                                        | 昵   称
+                                        span #{item.name}
+                                    dd
+                                        | 用户名
+                                        span #{item.username}
+                                    dd
+                                        | 性   别
+                                        span #{item.sex}
+                                        | 生   日
+                                        span #{item.birthday}
+                                    dd
+                                        | 地   址
+                                        span #{item.hometown}
+                                a.message(href='/message/#{item.uid}')
+        script(src='js/jquery-1.8.3.min.js')
+        script(src='js/mui.min.js')
+        script(type='text/javascript', charset='utf-8').
+            $(function () {
+
+                var str ='<li class="clr"><div class="choose_box fl"><span class="choose clr"><img src="{{head}}" class="fl"></span></div><dl class="fl"><dd>昵   称<span>{{name}}</span></dd><dd>用户名<span>{{username}}</span></dd><dd>性   别<span>{{sex}}</span>生   日<span>{{birthday}}</span></dd><dd>地   址<span>{{hometown}}</span></dd></dl><a href="/message/{{uid}}" class="message"></a></li>'
+                $('#input_check').click(function () {
+                    var txt =$('#input').val()||'';
+                    $.ajax({
+                        type: 'POST',
+                        url: '/finduser',
+                        data: {
+                            username:txt
+                        },
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data) {
+                                if (data.code == '200') {
+                                    if(data.msg.length>0){
+                                        var userlist=data.msg;
+                                        var userhtml='';
+                                        for(var i=0;i<userlist.length;i++){
+                                            userhtml+=str.replace(/{{hometown}}/g,userlist[i].hometown).replace(/{{birthday}}/g,userlist[i].birthday).replace(/{{head}}/g,userlist[i].head).replace(/{{name}}/g,userlist[i].name).replace(/{{username}}/g,userlist[i].username).replace(/{{sex}}/g,userlist[i].sex);
+
+                                        }
+                                        $('#userlistbox').empty();
+                                        $('#userlistbox').append(userhtml)
+                                    }else{
+                                        mui.toast('你查询的用户不存在');
+                                    }
+                                } else {
+                                    mui.toast(data.msg);
+                                }
+                            } else {
+                                mui.toast('系统异常，请稍后再试');
+                            }
+                        },
+                        error: function () {
+                            mui.toast('系统异常，请检查你的网络是否连接');
+                        }
+                    })
+                })
+            })

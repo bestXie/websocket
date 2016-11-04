@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>上传头像裁剪</title>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/mui.picker.min.css"/>
+    <link href="../css/public.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/cropper.css">
+    <link rel="stylesheet" href="css/myCrop.css">
+    <script src="../js/flexible.js"></script>
+</head>
+
+<body style="margin: auto;text-align: center;">
+
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-icon mui-icon-arrowleft" href="/updataUser"
+       style="position: absolute;left: 0;top: 50%;margin-top: -16px;">返回</a>
+
+    <h1 class="mui-title">修改资料</h1>
+</header>
+
+<section style="padding-top: 80px;">
+    <button id="photoBtn" type="button" class="mui-btn mui-btn-primary"
+            onclick="document.getElementById('inputImage').click()" value="选择照片">选择照片
+    </button>
+    <!-- 可以增加自己的样式 -->
+    <input id="inputImage" type="file" accept="image/*" style="display: none;"/>
+    <br/>
+    <img id="showImg"/>
+
+    <button id="photoBtn2" type="button" style="width: 80%;margin-top:.3rem;display: none"
+            class="mui-btn mui-btn-primary" onclick="" value="选择照片">保存头像
+    </button>
+    <!-- 可以增加自己的样式 -->
+
+</section>
+
+<div class="container" style="padding: 0;margin: 0;position:fixed;display: none;top: 0;left: 0;z-index: 200;"
+     id="containerDiv">
+    <div class="row" style="display: none;" id="imgEdit">
+        <div class="col-md-9">
+            <div class="img-container">
+                <img src="" alt="Picture">
+            </div>
+        </div>
+    </div>
+    <div class="row" id="actions" style="padding: 0;margin: 0;width: 100%;position: fixed;bottom: 5px;">
+        <div class="col-md-9 docs-buttons">
+            <div class="btn-group" style="float: left;margin-left: 5px;">
+                <button type="button" class="btn btn-primary" data-method="destroy" title="Destroy"
+                        style="height: auto;">
+	            <span class="docs-tooltip" data-toggle="tooltip">
+	              <span class="fa fa-power-off">取消</span>
+	            </span>
+                </button>
+            </div>
+
+            <div class="btn-group btn-group-crop " style="float: right;">
+                <button type="button" class="btn btn-primary" id="imgCutConfirm" data-method="getCroppedCanvas"
+                        data-option="{ &quot;width&quot;: 320, &quot;height&quot;: 180 }"
+                        style="height: auto;margin-right: 17px;">
+                    <span class="docs-tooltip " data-toggle="tooltip" title="">确认</span>
+                    <!--cropper.getCroppedCanvas({ width: 320, height: 180 }) -->
+                </button>
+            </div>
+
+        </div>
+        <!-- /.docs-buttons -->
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="../js/mui.min.js"></script>
+<script type="text/javascript" src="js/exif.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/cropper.js"></script>
+<script type="text/javascript" src="js/myCrop.js?v=1.0.4"></script>
+<script type="text/javascript">
+    var fileImg = "";
+
+    $(function () {
+
+        $("#imgCutConfirm").bind("click", function () {
+            $("#containerDiv").hide();
+            $("#imgEdit").hide();
+            $("#getCroppedCanvasModal").modal("hide");
+        })
+    });
+//    submitForm()
+    //提交表达
+    $('#photoBtn2').click(function(){
+        submitForm();
+    });
+    var mask = mui.createMask();
+    function submitForm() {
+        $("#registerForm").attr("enctype", "multipart/form-data");
+
+        var formData = new FormData($("#registerForm")[0]);
+        formData.append("imgBase64", encodeURIComponent($("#showImg").attr('src')));//
+        formData.append("fileFileName", "photo.jpg");
+
+        var params={'img':$("#showImg").attr('src')};
+        mui('body').progressbar().show();
+        mask.show();
+        $.ajax({
+            type: 'POST',
+            url: '/sethead',
+            data: params,
+            dataType: 'json',
+            success: function (data) {
+                mui('body').progressbar().hide();
+                mask.close();
+                if (data) {
+                    if (data.code == '200') {
+                        mui.alert( '保存成功', '确定', function () {
+                            window.location.href = "/updataUser"
+                        });
+                    } else {
+                        mui.toast(data.msg);
+                    }
+                } else {
+                    mui.toast('系统异常，请稍后再试');
+                }
+            },
+            error: function (returndata) {
+                mui.toast('系统异常，请稍后再操作');
+            }
+        });
+    }
+
+</script>
+
+</html>

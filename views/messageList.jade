@@ -1,0 +1,59 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no')
+        title= title
+        link(href='./css/mui.min.css', rel='stylesheet')
+        link(href='./css/public.css', rel='stylesheet')
+        link(rel='stylesheet', href='css/user.css')
+        script(src='js/flexible.js')
+    body
+        header.mui-bar.mui-bar-nav
+            a.mui-icon.mui-icon-arrowleft(href='/user') 返回
+            h1.mui-title #{username}
+        .mui-content
+            section.contact_item
+                ul
+                    for item in msglist
+                        li.clr
+                            .fl.minus_box
+                                span.minus(msguid='#{item.msguid}')
+                            dl.fl
+                                dt #{item.createname}
+                                dd #{item.msg}
+        script(src='js/jquery-1.8.3.min.js')
+        script(src='/js/mui.min.js')
+        script(type='text/javascript', charset='utf-8').
+            $(function () {
+                //删除单条留言
+                $(".minus").click(function () {
+                    var _this=this;
+                    var params={
+                        msguid:$(this).attr('msguid')
+                    };
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/deletemsg',
+                        data: params,
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data) {
+                                if (data.code == '200') {
+                                    mui.alert('留言删除成功', '确定', function () {
+                                        $(_this).parents('li').remove();
+                                    });
+                                } else {
+                                    mui.toast(data.msg);
+                                }
+                            } else {
+                                mui.toast('系统异常，请稍后再试');
+                            }
+                        },
+                        error: function () {
+                            mui.toast('系统异常，请检查你的网络是否连接');
+                        }
+                    })
+                });
+            });

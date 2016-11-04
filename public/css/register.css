@@ -1,0 +1,194 @@
+.same_box {
+    background: #fff;
+    border-top: 1px solid #ddd;
+    padding: 0.2rem;
+}
+
+.same_box_qq {
+    border-top: 0;
+}
+
+.no_top {
+    margin-top: 0;
+    margin-bottom: 0.2rem;
+}
+
+.same_box .input_box {
+    height: 0.4rem;
+    line-height: 0.4rem;
+}
+
+.same_box label {
+    width: 1.4rem;
+}
+
+.same_box label i, .clr i {
+    color: #ff0000;
+}
+
+.clr {
+    margin-bottom: 0;
+}
+
+.same_box input {
+    border: none;
+    width: 80%;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    padding: 0 0 0 0.15rem;
+    margin: 0;
+}
+
+.same_box input::-webkit-input-placeholder {
+    font-size: 0.24rem;
+    color: #C9C9C9;
+}
+
+.same_box .err_txt {
+    color: #ff0000;
+    font-size: 0.2rem;
+    padding-left: 0.95rem;
+    display: none;
+}
+.mui-bar-nav ~ .mui-content {
+    border-bottom: 1px solid #ddd;
+}
+label.error {
+    color: #ff0000;
+    font-size: 0.2rem;
+    padding-left: 1.55rem;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+input.header{
+    width: 0;
+    height: 0;
+    font-size: 0;
+    border: 0;
+    float: left;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+}
+.no_bdtop {
+    border-top: none;
+}
+
+section {
+    background: #fff;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 0.2rem;
+}
+
+section .fr {
+    vertical-align: top;
+}
+
+section span {
+    color: #666;
+    margin-right: 0.3rem;
+    vertical-align: middle;
+}
+
+section .mui-icon-arrowright {
+    height: 0.3rem;
+    width: 0.3rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+section .mui-icon-arrowright:before {
+    content: '\e583';
+    font-size: 0.24rem;
+    color: #bbb;
+    vertical-align: text-top;
+}
+footer{
+    width: 100%;
+    margin-top: .2rem;
+    bottom: 0;
+}
+footer .submit {
+    width: 100%;
+    color: #fff;
+    z-index: 3;
+
+}
+
+footer a:link {
+    color: #fff;
+}
+
+footer a:visited {
+    color: #fff;
+}
+
+footer a:hover {
+    color: #fff;
+}
+
+footer a:active {
+    color: #fff;
+}
+
+.touxiang {
+    position: relative;
+}
+
+.touxiang input {
+    width: 100%;
+    height: 100%;
+    opacity: .5;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.mui-card-content span {
+    color: red;
+}
+
+.read {
+    margin-top: 0.4rem;
+    text-align: center;
+    font-size: 0.22rem;
+    color: #999999;
+}
+
+input[type="checkbox"] {
+    width: 0.3rem;
+    height: 0.3rem;
+    background: #ff6600;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 0.15rem;
+}
+
+input[type="checkbox"]:checked:after {
+    content: '\2713';
+    width: 0.3rem;
+    height: 0.3rem;
+    color: #ffffff;
+    font-size: 0.14rem;
+    vertical-align: top;
+}
+
+.read a {
+    color: #1889d8;
+}
+
+.btn {
+    padding: 0;
+    border: none;
+    width: 87%;
+    line-height: .88rem;
+    background: #ff6600;
+    color: #fff;
+    font-size: .38rem;
+    border-radius: .04rem;
+    box-sizing: content-box;
+    margin: .4rem auto;
+}

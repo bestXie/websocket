@@ -1,0 +1,252 @@
+*{margin:0px;padding:0px;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-appearance:none;outline:none;word-break:break-all;box-sizing:border-box;-webkit-box-sizing:border-box;}
+*:not(input,textarea) {-webkit-touch-callout: none;-webkit-user-select: none;}
+html,body{width:100%;height:100%;font-family:"Microsoft YaHei",Helvetica,Arial; font-size: 100px;background: #f4f4f4; }
+input{-webkit-user-select:initial;font-family:Arial,"Microsoft YaHei";border:none;}
+input:-webkit-input-placeholder{color:#C9C9C9;font-size:0.24rem;}
+i{font-style: normal}
+a{text-decoration:none;}
+ul,ol,li{list-style:none;}
+h1,h2,h3,h4,h5,h6{ font-weight: normal; }
+img{border:0;}
+.clearfix:after{
+	display: block;overflow: hidden;clear: both;height: 0;line-height: 0;font-size: 0;
+}
+.fl,.left{float:left;}
+.fr,.right{float:right;}
+.clr{zoom:1;    overflow: hidden;}
+.clr:after{content:"";display:block;height:0;clear:both;font-size:0;visibility:hidden;overflow:hidden; }
+.mui-content{background:#f4f4f4;}
+.box_box{ 
+	display: -webkit-box; 
+}
+.box_flex{ 
+	-webkit-box-flex:1; 
+}
+.box_vam{
+	display:-webkit-box;
+	-webkit-box-pack:center;
+	-webkit-box-orient:vertical;
+	vertical-align:middle;
+}
+.nav-tap-top{
+	margin-top: 0.20rem;
+}
+.mt40{
+	padding-top: 0.40rem !important;
+}
+.mt0{ margin-top: 0!important; }
+.mt20{ margin-top: 0.2rem; }
+.mt84{ margin-top: 0.84rem; }
+.mr{
+	margin-right: 0.3rem!important;
+}
+.nav-taps{    
+	background: #ffffff;
+    border-bottom: 1px solid #dfdfdf;
+}
+.nav-taps li{
+	position: relative;
+	text-align: center;
+    width: 100%;
+    -webkit-box-flex: 1;
+    padding: 0 0;
+    font-size: 0.32rem;
+    line-height: 0.4rem;
+    color: #666666;
+    border-left: 1px solid #dfdfdf;
+}
+.nav-taps li:first-child,
+.list-choise-time>li:first-child {
+	border-left: 0;
+}
+.nav-taps li span{
+	display: inline-block;
+	padding: 0.22rem 0;
+	width: 100%;
+	color: #666;
+}
+.nav-taps li.active span{
+	color: #ff6600;
+    border-bottom: 0.05rem solid #ff6600;
+}
+.nav-tap-fixed{
+	position: fixed;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+}
+.nav-tap-pad{
+   margin-top: 0.9rem;
+   padding-bottom: 0.40rem;
+}
+.nav-taps li.active span .bubble{
+	content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    margin-left: -0.16rem;
+    border: solid 0.16rem #ff6600;
+    border-color: transparent;
+    border-bottom-color: #ff6600;
+}
+
+select.list-input{
+	border: none;
+	letter-spacing: 0.02rem;
+    line-height: 0.60rem;
+    -webkit-box-flex: 1;
+    height: 100%;
+    padding: 0 0.1rem;
+    background: transparent;
+    font-size: 0.30rem;
+    color: #000;
+}
+/*input公用*/
+.list-group {
+    background: #fff;
+    border-bottom: 1px solid #e1e1e1;
+    border-top: 1px solid #e1e1e1;
+}
+.list_box li{
+	position: relative;
+    display: -webkit-box;
+    height: 0.89rem;
+    line-height: 0.89rem;
+    font-size: 0.30rem;
+    color: #777;
+    border-top: 1px solid #e1e1e1;
+    padding-left: 0.30rem;
+}
+.list_box .label{
+	min-width: 1.50rem;
+    margin-right: 0.40rem;
+}
+.list_box input{
+  width: 4.72rem;
+  letter-spacing: 0.02rem;
+  line-height: 0.30rem;
+  -webkit-box-flex: 1;
+  height: 100%;
+  padding: 0.28rem 0.1rem;
+  background: transparent;
+  font-size: 0.30rem;
+  color: #000;
+}
+/*公用按钮*/
+.common_btn{
+	width: 5.26rem;
+	height: 0.9rem;
+	border-radius: 0.06rem;
+	background: #ff6600;
+	margin: 0.3rem auto;
+}
+.common_btn a{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.common_btn,.common_btn a{
+	font-size: 0.38rem;
+	line-height: 0.9rem;
+	text-align: center;
+	color: #fff;
+}
+
+body {
+  overflow-x: hidden;
+}
+/*弹窗样式*/
+.pop_Mask{
+	width:100%;
+	height:100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index:100;
+	background:#000;
+	opacity:.5;
+}
+.pop_content{
+	width:100%;
+	height:100%;
+	position: absolute;	
+	top: 0;
+	left: 0;
+	z-index:101;
+}
+/*底部tab切换样式*/
+.mui-bar-tab{
+	background: #F9F9F9;
+	height:1rem;
+	padding:0.1rem;
+	padding-bottom: 0;
+}
+.mui-bar-tab .mui-tab-item.mui-active{
+	color: #ff6602;
+}
+.mui-bar-tab .mui-tab-item{
+	padding: 0;
+	line-height:0.45rem;
+}
+.mui-bar-tab dl{
+	height:1rem;
+	display:inline-block;
+}
+.icon{
+	width:0.5rem;
+	height:0.5rem;
+	display: inline-block;
+}
+.mui-tab-item.mui-active2 .message_list_icon{
+	background:url(../img/edit.png) center center no-repeat;
+	background-size: 100%;
+}
+.mui-bar-tab .message_list_icon{
+	background:url(../img/icon-msg.png) center center no-repeat;
+	background-size: 100%;
+}
+.mui-bar-tab .yonghu_list_icon{
+	background:url(../img/icon31.png) center center no-repeat;
+	background-size: 100%;
+}
+.mui-bar-tab .my_wanjia_icon{
+	background:url(../img/ocion-me2.png) center center no-repeat;
+	background-size: 100%;
+}
+
+/*底部tab切换样式结束*/
+/*  顶部公共头部*/
+.mui-bar{
+	background:#f9f9f9;
+	border-bottom: 1px solid #ddd;
+}
+.mui-bar .mui-title{
+	color: #333;
+}
+.mui-bar .mui-icon{
+	font-size: 12px !important;
+}
+.mui-icon-arrowleft{
+	color: #888;
+	font-size:0.24rem;
+}
+.confirm_wrap .confirm{
+	width: 100%;
+	display:block;
+	position:fixed;
+	bottom:0;
+	text-align: center;
+	background: #ff6600;
+	color: #fff;
+	height: 0.9rem;
+	line-height:0.9rem;
+	font-size: 0.28rem;
+	z-index: 3;
+}
+.mui-toast-container{
+	bottom: 100px;
+}
+.mui-toast-container .mui-toast-message{
+	background: #8a64bc;
+	color: #fff;
+}

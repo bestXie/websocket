@@ -1,0 +1,93 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no')
+        title= title
+        link(href='/css/mui.min.css', rel='stylesheet')
+        link(href='/css/public.css', rel='stylesheet')
+        link(href='/css/user.css',rel='stylesheet' )
+        script(src='/js/flexible.js')
+    body
+        header.mui-bar.mui-bar-nav
+            a.mui-icon.mui-icon-arrowleft(href='/index') 返回
+            h1.mui-title #{username}
+        .mui-content
+            .evaluation
+                ul
+                    li
+                        span 评分:
+                        em.star
+                        em
+                        em
+                        em
+                        em
+                p.remark 留言
+                textarea#textarea(placeholder='请输入两百字以内的留言',maxlength=200)
+                footer
+                    button.submit.mui-btn.mui-btn-success 确定
+            section.contact_item
+                ul#msgBox
+                    for item in msglist
+                        li.clr
+                            dl.fl(style="width:100%")
+                                dt #{item.createname}
+                                dd #{item.msg}
+                                dd(style="text-align:right;") #{item.createtime}
+        script(src='/js/jquery-1.8.3.min.js')
+        script(src='/js/mui.min.js')
+        script(type='text/javascript', charset='utf-8').
+            $(function () {
+                var str='<li class="clr"><dl style="width:100%" class="fl"><dt>{{createname}}</dt><dd>{{msg}}</dd><dd style="text-align:right;">{{createtime}}</dd></dl></li>'
+                //星星
+                $(".evaluation>ul>li>em").click(function () {
+                    $(this).toggleClass("star");
+                });
+                $('.submit').click(function(){
+                    var msg= $('#textarea').val()||'';
+                    if(!msg){
+                        mui.toast('请输入留言');
+                        return false;
+                    }
+                    if(!$.trim(msg)){
+                        mui.toast('留言不能全部为空格');
+                        return false;
+                    }
+                    postmessage(msg);
+                });
+                var mask = mui.createMask();
+                function postmessage(msg) {
+                    var params = {
+                        msg: msg
+                    };
+                    mui('body').progressbar().show();
+                    mask.show();
+                    $.ajax({
+                        type: 'POST',
+                        url: '/addmsg',
+                        data: params,
+                        dataType: 'json',
+                        success: function (data) {
+                            mui('body').progressbar().hide();
+                            mask.close();
+                            if (data) {
+                                if (data.code == '200') {
+                                    mui.alert('留言发表成功', '确定', function () {
+
+                                        $('#msgBox').prepend(str.replace(/{{createname}}/g,data.msg.createname).replace(/{{msg}}/g, data.msg.msg).replace(/{{createtime}}/g,data.msg.createtime))
+                                    });
+                                } else {
+                                    mui.toast(data.msg);
+                                }
+                            } else {
+                                mui.toast('系统异常，请稍后再试');
+                            }
+                        },
+                        error: function () {
+                            mui('body').progressbar().hide();
+                            mask.close();
+                            mui.toast('系统异常，请检查你的网络是否连接');
+                        }
+                    })
+                }
+            });

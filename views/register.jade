@@ -1,0 +1,97 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no')
+        meta(name='apple-mobile-web-app-capable', content='yes')
+        meta(name='apple-mobile-web-app-status-bar-style', content='black')
+        title &#x6CE8;&#x518C;-webSocket
+        link(href='css/mui.min.css', rel='stylesheet')
+        link(rel='stylesheet', href='./css/mui.picker.min.css')
+        link(href='css/public.css', rel='stylesheet')
+        link(href='css/register.css', rel='stylesheet')
+        script(src='js/flexible.js')
+    body
+        header.mui-bar.mui-bar-nav
+            a.mui-icon.mui-icon-arrowleft(href='/') &#x8FD4;&#x56DE;
+            h1.mui-title &#x6CE8;&#x518C;
+        .mui-content
+            .mui-card
+                .mui-card-content
+                    .mui-card-content-inner
+                        | &#x6807;
+                        span  *
+                        | &#x4EE3;&#x8868;&#x5FC5;&#x586B;
+                        br
+                        | &#x9ED8;&#x8BA4;&#x5BC6;&#x7801;&#x4E3A;132456
+            form#myform
+                .same_box.validate_box
+                    .input_box.clr
+                        label.fl(for='username')
+                            i *
+                            | &#x7528;&#x6237;&#x540D;
+                        input#username.fl(name='username', type='text', maxlength='15', placeholder='请输入用户名', value='xsy123')
+                    p.err_txt *&#x7528;&#x6237;&#x540D;&#x6709;&#x8BEF;&#xFF0C;&#x8BF7;&#x4ED4;&#x7EC6;&#x68C0;&#x67E5;
+                .same_box.validate_box
+                    .input_box.clr
+                        label.fl(for='name')
+                            i *
+                            | &#x6635;&#x79F0;
+                        input#name.fl(name='name', type='text', maxlength='15', placeholder='请输入昵称', value='')
+                    p.err_txt *&#x6635;&#x79F0;&#x6709;&#x8BEF;&#xFF0C;&#x8BF7;&#x4ED4;&#x7EC6;&#x68C0;&#x67E5;
+                .same_box.validate_box
+                    .input_box.clr
+                        label.fl(for='password')
+                            i *
+                            | &#x5BC6;&#x7801;
+                        input#password.fl(type='password', name='password', maxlength='15', placeholder='5-16位数字和字母的组合', value='123456')
+                    p.err_txt *&#x6635;&#x79F0;&#x6709;&#x8BEF;&#xFF0C;&#x8BF7;&#x4ED4;&#x7EC6;&#x68C0;&#x67E5;
+                .same_box.validate_box
+                    .input_box.clr
+                        label.fl(for='confirm_password')
+                            i *
+                            | &#x5BC6;&#x7801;
+                        input#confirm_password.fl(type='password', name='confirm_password', maxlength='15', placeholder='5-16位数字和字母的组合', value='123456')
+                    p.err_txt *&#x6635;&#x79F0;&#x6709;&#x8BEF;&#xFF0C;&#x8BF7;&#x4ED4;&#x7EC6;&#x68C0;&#x67E5;
+                section#gender.clr.validate_box
+                    label
+                        i *
+                        | &#x6027;&#x522B;
+                    .fr
+                        span#gender_result.result &#x7537;
+                        i.mui-icon.mui-icon-arrowright
+                        input#sex.header(type='text', name='sex', value='男')
+                section#birth_date.clr.no_bdtop.validate_box
+                    label
+                        i *
+                        | &#x51FA;&#x751F;&#x65E5;&#x671F;
+                    .fr
+                        span#birth_date_result.result 2016-10-13
+                        i.mui-icon.mui-icon-arrowright
+                        input#birthday.header(type='text', name='birthday', value='2016-10-13')
+                section#hometownbox.clr.no_bdtop.validate_box
+                    label
+                        i *
+                        | &#x6545;&#x4E61;
+                    .fr
+                        span#hometown_result.result &#x6C5F;&#x897F;&#x7701;/&#x4E5D;&#x6C5F;&#x5E02;
+                        i.mui-icon.mui-icon-arrowright
+                        input#hometown.header(type='text', name='hometown', value='江西省/九江市')
+                .validate_box
+                    .read
+                        input#agree(type='checkbox', name='agree', checked='')
+                        label(for='agree', style='cursor:pointer;') &#x6211;&#x5DF2;&#x9605;&#x8BFB;&#x5E76;&#x540C;&#x610F;
+                        a#user_registered(href='javascript:;') &#x300A;webSocket&#x4F1A;&#x5458;&#x6CE8;&#x518C;&#x534F;&#x8BAE;&#x300B;
+                div(style='text-align: center')
+                    input.btn.mui-btn.mui-btn-danger(type='submit',readonly="readonly", value='接受协议并注册')
+        script(src='js/jquery-1.8.3.min.js')
+        script(src='js/jquery.validate.min.js')
+        script(src='js/mui.min.js')
+        script(src='./js/mui.picker.min.js')
+        script(src='./js/city.data2.js')
+        script(src='./js/mui-init.js')
+        script(src='js/form-validate.js')
+        script(src='js/my-form.js')
+        script(src='js/register.js', type='text/javascript', charset='utf-8')
+
+

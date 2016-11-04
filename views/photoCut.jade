@@ -1,0 +1,83 @@
+doctype html
+html
+head
+    title &#x4E0A;&#x4F20;&#x5934;&#x50CF;&#x88C1;&#x526A;
+    meta(http-equiv='keywords', content='keyword1,keyword2,keyword3')
+    meta(http-equiv='description', content='this is my page')
+    meta(http-equiv='content-type', content='text/html; charset=UTF-8')
+    meta(name='viewport', content='width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no')
+    link(rel='stylesheet', href='./css/bootstrap.min.css')
+    link(href='./css/mui.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='../mui.picker.min.css')
+    link(href='../css/public.css', rel='stylesheet')
+    link(rel='stylesheet', href='css/cropper.css')
+    link(rel='stylesheet', href='css/myCrop.css')
+    script(src='../js/flexible.js')
+body(style='margin: auto;text-align: center;')
+    header.mui-bar.mui-bar-nav
+        a.mui-icon.mui-icon-arrowleft(href='../updata-user.html', style='position: absolute;left: 0;top: 50%;margin-top: -16px;') &#x8FD4;&#x56DE;
+        h1.mui-title &#x4FEE;&#x6539;&#x8D44;&#x6599;
+    section(style='padding-top: 80px;')
+        button#photoBtn.mui-btn.mui-btn-primary(type='button', onclick="document.getElementById('inputImage').click()", value='选择照片')
+            | &#x9009;&#x62E9;&#x7167;&#x7247;
+        // 可以增加自己的样式
+        input#inputImage(type='file', accept='image/*', style='display: none;')
+        br
+        img#showImg
+        button#photoBtn2.mui-btn.mui-btn-primary(type='button', style='width: 80%;margin-top:.3rem;display: none', onclick='', value='选择照片')
+            | &#x4FDD;&#x5B58;&#x5934;&#x50CF;
+        // 可以增加自己的样式
+    #containerDiv.container(style='padding: 0;margin: 0;position:fixed;display: none;top: 0;left: 0;z-index: 200;')
+        #imgEdit.row(style='display: none;')
+            .col-md-9
+                .img-container
+                    img(src='', alt='Picture')
+        #actions.row(style='padding: 0;margin: 0;width: 100%;position: fixed;bottom: 5px;')
+            .col-md-9.docs-buttons
+                .btn-group
+                    button.btn.btn-primary(type='button', data-method='destroy', title='Destroy', style='height: auto;')
+                        span.docs-tooltip(data-toggle='tooltip')
+                            span.fa.fa-power-off &#x53D6;&#x6D88;
+                .btn-group.btn-group-crop(style='float: right;')
+                    button#imgCutConfirm.btn.btn-primary(type='button', data-method='getCroppedCanvas', data-option='{ "width": 320, "height": 180 }', style='height: auto;margin-right: 17px;')
+                        span.docs-tooltip(data-toggle='tooltip', title='') &#x786E;&#x8BA4;
+                        // cropper.getCroppedCanvas({ width: 320, height: 180 })
+            // /.docs-buttons
+script(type='text/javascript', src='./photoCut/js/jquery.min.js')
+script(src='./js/mui.min.js')
+script(type='text/javascript', src='./photoCut/js/exif.js')
+script(type='text/javascript', src='./photoCut/js/bootstrap.min.js')
+script(type='text/javascript', src='./photoCut/js/cropper.js')
+script(type='text/javascript', src='./photoCut/js/myCrop.js?v=1.0.4')
+script(type='text/javascript').
+    var fileImg = "";
+    $(function () {
+        $("#imgCutConfirm").bind("click", function () {
+            $("#containerDiv").hide();
+            $("#imgEdit").hide();
+            $("#getCroppedCanvasModal").modal("hide");
+        })
+    });
+    submitForm();
+    //提交表达
+    function submitForm() {
+        $("#registerForm").attr("enctype", "multipart/form-data");
+        var formData = new FormData($("#registerForm")[0]);
+        formData.append("imgBase64", encodeURIComponent(fileImg));//
+        formData.append("fileFileName", "photo.jpg");
+        $.ajax({
+            url: "",
+            type: 'POST',
+            data: formData,
+            timeout: 10000, //超时时间设置，单位毫秒
+            async: true,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+            },
+            error: function (returndata) {
+                mui.toast('系统异常，请稍后再操作');
+            }
+        });
+    }

@@ -1,0 +1,68 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no')
+        title= title
+        link(href='./css/mui.min.css', rel='stylesheet')
+        link(href='./css/public.css', rel='stylesheet')
+        link(rel='stylesheet', href='css/user.css')
+        script(src='js/flexible.js')
+    body
+        header.mui-bar.mui-bar-nav
+            a.mui-icon.mui-icon-arrowleft(href='/index') 返回
+            h1.mui-title #{username}
+        .mui-content
+            ul.mui-table-view
+                li.mui-table-view-cell.mui-media.user_relatives
+                    a(href='/updataUser')
+                        img.mui-media-object.mui-pull-left(src='#{head}')
+                        .mui-media-body
+                            p.mui-ellipsis #{name}
+                            p.mui-ellipsis
+                                | #{hometown}
+                                span #{sex}
+                                span #{birthday}
+                        span.mui-icon.mui-icons.mui-icon-gear.fr
+            section
+                .clr
+                    span.mui-icon.mui-icon-qq.fl
+                    span.fl.clr_tips 我的QQ
+                    span.fr
+                        i.jifen #{qq || 408820076 }
+            section
+                .clr
+                    span.mui-icon.mui-icon-weixin.fl
+                    span.fl.clr_tips 微信
+                    span.fr
+                        i.jifen #{wx}
+            section
+                .clr
+                    span.mui-icon.mui-icon-phone.fl
+                    span.fl.clr_tips 手机号码
+                    span.fr
+                        i.jifen #{tel}
+            section
+                .clr
+                    span.mui-icon.mui-icon-phone.fl
+                    span.fl.clr_tips 我的邮箱
+                    span.fr
+                        i.jifen #{email}
+            section
+                .clr
+                    span.mui-icon.mui-icon-personadd.fl
+                    span.fl.clr_tips 我的好友
+                    span.fr
+                        i.jifen 暂无
+            section#chatboxes
+                .clr
+                    span.mui-icon.mui-icon-chatboxes.fl
+                    span.fl.clr_tips 我的留言
+                    span.fr
+                        i.jifen
+                        span.mui-icon.mui-icon-arrowright
+        script(src='js/jquery-1.8.3.min.js')
+        script(type='text/javascript', charset='utf-8').
+            $('#chatboxes').bind('click',function(){
+                window.location.href = "/messageList"
+            });

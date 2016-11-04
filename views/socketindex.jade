@@ -1,0 +1,182 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no')
+        meta(name='apple-mobile-web-app-capable', content='yes')
+        meta(name='apple-mobile-web-app-status-bar-style', content='black')
+        title= title
+        link(href='css/mui.min.css', rel='stylesheet')
+        link(href='css/public.css', rel='stylesheet')
+        link(href='css/login.css', rel='stylesheet')
+        script(src='js/flexible.js')
+    body
+        header.mui-bar.mui-bar-nav
+            if username != ''
+                a.mui-icon.mui-icon-arrowleft.index-icon-arrowleft 信息
+                h1#title.mui-title 欢迎 #{name}
+            else
+                h1#title.mui-title webSocket
+        .mui-content
+            if username == ''
+                form#myform.page(style='display: block')
+                    .inte-banner
+                        p
+                            | &#x6B22;&#x8FCE;&#xFF0C;&#x8BF7;&#x6CE8;&#x518C;/&#x767B;&#x5F55;&#x540E;&#x518D;&#x64CD;&#x4F5C;
+                            br
+                            // 前端页面由前端大神曹进国提供<br/>
+                            | &#x57FA;&#x4E8E;mui,node,mongodb,websoket&#x5F00;&#x53D1;
+                    .mui-card.validate_box
+                        .mui-card-header Sign up to webSocket
+                        .mui-input-group
+                            .mui-input-row
+                                label(for='username') &#x7528;&#x6237;&#x540D;&#xFF1A;
+                                input#username.mui-input-clear(type='text', name='username', placeholder='请输入用户名')
+                            .mui-input-row
+                                label(for='password') &#x5BC6;&#x7801;&#xFF1A;
+                                input#password.mui-input-password(type='password', name='password', placeholder='请输入密码')
+                        .mui-card-footer
+                            a.mui-card-link
+                            a.mui-card-link
+                                button.submit.mui-btn.mui-btn-primary(value='Sign up') 登陆
+                            a.mui-card-link(href='/register') &#x6CE8;&#x518C;
+            else
+                .message-box.mui-scroll-wrapper.message-page
+                   .mui-scroll
+                        // 这里放置真实显示的DOM内容
+                        .message-box.clearfix#message
+                            p.message_system
+                                span.content 18:37
+
+        footer(style='display: none')
+            .bar
+                textarea#textarea.text(name='text', cols='10', rows='1', placeholder='请输入...', maxlength='500')
+                #btn.btn-send &#x53D1;&#x9001;
+
+        nav.mui-bar.mui-bar-tab
+            .mui-bar-box
+                a.mui-tab-item.mui-active2(href='shoushou')
+                    span.mui-icon.icon.message_list_icon
+                    span.mui-tab-label &#x6D88;&#x606F;
+                a.mui-tab-item(href='/userlist')
+                    span.mui-icon.icon.yonghu_list_icon
+                    span.mui-tab-label &#x7528;&#x6237;&#x5217;&#x8868;
+                a#href-user.mui-tab-item(href='/user')
+                    span.mui-icon.icon.my_wanjia_icon
+                        span.mui-badge.mui-badge-primary
+                    span.mui-tab-label &#x6211;
+            .msg-box
+        script(src='js/jquery-1.8.3.min.js')
+        script(src='js/mui.min.js')
+        script(src='../socket.io/socket.io.js')
+        script(type='text/javascript', charset='utf-8').
+
+            $(function () {
+                var socket = io();
+                var stryou = '<div class="message you">\
+                        <img class="avatar" src="{{head}}"/>\
+                              <div class="content">\
+                                  <div class="name">{{name}}</div>\
+                                  <div class="bubble bubble_default left">\
+                                      <div class="bubble_cont">\
+                                          <div class="plain">\
+                                              <pre>{{msg}}<\/pre>\
+                                          <\/div>\
+                                      <\/div>\
+                                  <\/div>\
+                              <\/div>\
+                          <\/div>';
+                var strme = '<div class="message me">\
+                          <img class="avatar" src="{{head}}"/>\
+                                <div class="content">\
+                                    <div class="name">{{name}}</div>\
+                                    <div class="bubble right">\
+                                        <div class="bubble_cont">\
+                                            <div class="plain">\
+                                                <pre>{{msg}}<\/pre>\
+                                            <\/div>\
+                                        <\/div>\
+                                    <\/div>\
+                                <\/div>\
+                            <\/div>';
+                var name = '#{name}';
+                var head = '#{head}';
+                mui('.mui-scroll-wrapper').scroll({
+                    deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+                });
+                socket.on("resmsg", function (msg) {
+                    var str='';
+                    if(msg.name&&msg.name==name){
+                        str = strme.replace(/{{head}}/g, msg.head || 'img/user-moren0.png').replace(/{{name}}/g, msg.name || '匿名').replace(/{{msg}}/g, msg.msg || '匿名');
+                    }else{
+                        str = stryou.replace(/{{head}}/g, msg.head || 'img/user-moren0.png').replace(/{{name}}/g, msg.name || '匿名').replace(/{{msg}}/g, msg.msg || '匿名');
+                    }
+                    //$("#message").prepend(str);
+                    $("#message").append(str);
+                });
+                var index = {
+                    init: function () {
+                        this.bind();
+                    },
+                    bind: function () {
+                        var _this = this;
+                        $('.mui-bar-tab .mui-tab-item').bind('touchend click', function () {
+                            var url = $(this).attr('href');
+                            if (url) {
+                                if (url == 'shoushou') {
+                                    $('footer').show();
+                                    $('nav').hide();
+                                    $('.index-icon-arrowleft').html('菜单');
+                                    $('.index-icon-arrowleft')[0].shoushou = 1;
+                                    return false;
+                                }
+                                mui.openWindow({
+                                    url: url
+                                });
+                            }
+                        });
+                        $('.index-icon-arrowleft').bind('click', function () {
+                            if (!this.shoushou) {
+                                this.shoushou = 1;
+                                $(this).html('菜单');
+                                $('footer').show();
+                                $('nav').hide();
+                            } else {
+                                this.shoushou = '';
+                                $(this).html('信息');
+                                $('footer').hide();
+                                $('nav').show();
+                            }
+                        });
+
+                        $('.submit').click(function () {
+                            $('#myform').submit();
+                        });
+                        $('#btn').bind('click', function () {
+                            _this.socketemit();
+                        });
+                        $("#textarea").keydown(function (e) {
+                            if (e.keyCode == 13) {
+                                _this.socketemit();
+                            }
+                        });
+                    },
+                    socketemit: function () {
+                        //把文本框的内容上传：
+                        var txt = $('#textarea').val();
+                        if (!txt) {
+                            mui.toast('内容不能为空！');
+                            return false;
+                        }
+                        socket.emit("reqmsg", {
+                            "msg": $("#textarea").val().toString(),
+                            "name": name,
+                            "head":head
+                        });
+                        $("#textarea").val("");
+                    }
+
+                };
+                index.init();
+            });
+                                  

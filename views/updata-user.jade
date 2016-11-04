@@ -1,0 +1,143 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no')
+        title= title
+        link(href='./css/mui.min.css', rel='stylesheet')
+        link(rel='stylesheet', href='./css/mui.picker.min.css')
+        link(href='./css/public.css', rel='stylesheet')
+        link(rel='stylesheet', href='css/user.css')
+        link(href='css/register.css', rel='stylesheet')
+        script(src='js/flexible.js')
+    body
+        header.mui-bar.mui-bar-nav
+            a.mui-icon.mui-icon-arrowleft(href='/user') 返回
+            h1.mui-title 信息修改
+        .mui-content
+            ul.mui-table-view
+                li.mui-table-view-cell.mui-media
+                    a(href='photoCut/photoCut.html')
+                        img.mui-media-object.mui-pull-left(src='#{head}')
+                        .mui-media-body
+                            p.mui-ellipsis
+                                button.mui-btn2.mui-btn.mui-btn-primary.mui-btn-outlined(type='button') 修改头像
+            form#myform
+                .same_box.validate_box
+                    .input_box.clr
+                        label.fl(for='name')
+                            i *
+                            | 昵称
+                        input#name.fl(name='name', type='text', maxlength='15', placeholder='请输入昵称', value='#{name}')
+                    p.err_txt *&#x6635;&#x79F0;&#x6709;&#x8BEF;&#xFF0C;&#x8BF7;&#x4ED4;&#x7EC6;&#x68C0;&#x67E5;
+                section#gender.clr.validate_box
+                    label
+                        i *
+                        | 性别
+                    .fr
+                        span#gender_result.result #{sex}
+                        i.mui-icon.mui-icon-arrowright
+                        input#sex.header(type='text', name='sex', value='#{sex}')
+                section#birth_date.clr.no_bdtop.validate_box
+                    label
+                        i *
+                        | 出生日期
+                    .fr
+                        span#birth_date_result.result #{birthday}
+                        i.mui-icon.mui-icon-arrowright
+                        input#birthday.header(type='text', name='birthday', value='#{birthday}')
+                section#hometownbox.clr.no_bdtop.validate_box
+                    label
+                        i *
+                        | 故乡
+                    .fr
+                        span#hometown_result.result #{hometown}
+                        i.mui-icon.mui-icon-arrowright
+                        input#hometown.header(type='text', name='hometown', value='#{hometown}')
+                .same_box.same_box_qq.validate_box
+                    .input_box.clr
+                        label.fl(for='qq')
+                            i
+                            | 我的QQ
+                        input#qq.fl(type='text', name='qq', maxlength='13', placeholder='请输入QQ', value='#{qq}')
+                    p.err_txt *QQ&#x6709;&#x8BEF;&#xFF0C;&#x8BF7;&#x4ED4;&#x7EC6;&#x68C0;&#x67E5;
+                .same_box.validate_box.validate_box
+                    .input_box.clr
+                        label.fl(for='wx')
+                            i
+                            | 我的微信
+                        input#wx.fl(type='text', name='wx', maxlength='20', placeholder='请输入微信',value='#{wx}')
+                    p.err_txt *&#x5FAE;&#x4FE1;&#x6709;&#x8BEF;&#xFF0C;&#x8BF7;&#x4ED4;&#x7EC6;&#x68C0;&#x67E5;
+                .same_box.validate_box
+                    .input_box.clr
+                        label.fl(for='tel')
+                            i
+                            | 手机号码
+                        input#tel.fl(type='tel', name='tel', maxlength='11', placeholder='请输入手机号码',value='#{tel}')
+                    p.err_txt *&#x624B;&#x673A;&#x53F7;&#x7801;&#x6709;&#x8BEF;&#xFF0C;&#x8BF7;&#x4ED4;&#x7EC6;&#x68C0;&#x67E5;
+                .same_box.validate_box
+                    .input_box.clr
+                        label.fl(for='email')
+                            i
+                            | 我的邮箱
+                        input#email.fl(type='text', name='email', maxlength='30', placeholder='请输入邮箱',value='#{email}')
+                    p.err_txt *&#x624B;&#x673A;&#x53F7;&#x7801;&#x6709;&#x8BEF;&#xFF0C;&#x8BF7;&#x4ED4;&#x7EC6;&#x68C0;&#x67E5;
+                footer
+                    button.submit.mui-btn.mui-btn-success(value='保存') 保存
+        script(src='js/jquery-1.8.3.min.js')
+        script(src='js/jquery.validate.min.js')
+        script(src='js/mui.min.js')
+        script(src='./js/mui.picker.min.js')
+        script(src='./js/city.data2.js')
+        script(src='./js/mui-init.js')
+        script(src='js/form-validate.js')
+        script(src='js/my-form.js')
+        script(type='text/javascript', charset='utf-8').
+            $('.submit').click(function () {
+                $('#myform').submit();
+            });
+            my_form.init(function (form) {
+                postUpdataUser();
+                return false;
+            });
+            var mask = mui.createMask();
+            function postUpdataUser() {
+                var params = {
+                    name: $('#name').val(),
+                    sex: $('#sex').val(),
+                    birthday: $('#birth_date_result').html(),
+                    qq: $('#qq').val(),
+                    wx: $('#wx').val(),
+                    tel: $('#tel').val(),
+                    email: $('#email').val()
+                };
+                mui('body').progressbar().show();
+                mask.show();
+                $.ajax({
+                    type: 'POST',
+                    url: '/updataUser',
+                    data: params,
+                    dataType: 'json',
+                    success: function (data) {
+                        mui('body').progressbar().hide();
+                        mask.close();
+                        if (data) {
+                            if (data.code == '200') {
+                                mui.alert('信息修改成功', function () {
+                                    window.location.href = "/user"
+                                });
+                            } else {
+                                mui.toast(data.msg);
+                            }
+                        } else {
+                            mui.toast('系统异常，请稍后再试');
+                        }
+                    },
+                    error: function (data) {
+                        mui('body').progressbar().hide();
+                        mask.close();
+                        mui.toast('系统异常，请检查你的网络是否连接');
+                    }
+                })
+            }
+                                        
